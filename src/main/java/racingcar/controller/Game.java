@@ -17,7 +17,6 @@ public class Game {
     private final InputView inputView = new InputView();
     private final ParseCarName parseCarName = new ParseCarName();
     private final ParseRound parseRound = new ParseRound();
-    private final Cars cars = new Cars();
     private final GameService gameService = new GameService();
 
     public void start(){
@@ -34,7 +33,7 @@ public class Game {
             Car car = new Car(carName);
             carList.add(car);
         }
-        cars.setCarList(carList);
+        Cars cars = new Cars(carList);
 
 
         outputView.printEachRoundResultRequest();
@@ -44,14 +43,23 @@ public class Game {
     }
 
     public String calculateWinner(List<Car> carList){
-        String winner = "";
-        int maxNum = 0;
+        int maxPosition = findMaxPosition(carList);
+
+        List<String> winners = new ArrayList<>();
         for (Car car : carList) {
-            if(car.getPosition() > maxNum){
-                winner = car.getName();
-                maxNum = car.getPosition();
+            if(car.getPosition() == maxPosition){
+                winners.add(car.getName());
             }
         }
-        return winner;
+        return String.join(", ",winners);
+    }
+
+    private int findMaxPosition(List<Car> carList) {
+        int maxPosition = 0;
+
+        for (Car car : carList) {
+            maxPosition = Math.max(car.getPosition(), maxPosition);
+        }
+        return maxPosition;
     }
 }

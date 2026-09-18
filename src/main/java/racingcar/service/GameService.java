@@ -9,7 +9,6 @@ import java.util.List;
 
 public class GameService {
 
-    private final Cars cars = new Cars();
     private final RandomNumber randomNumber = new RandomNumber();
     private final OutputView outputView = new OutputView();
 
