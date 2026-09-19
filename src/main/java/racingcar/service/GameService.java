@@ -12,15 +12,14 @@ public class GameService {
     private final RandomNumber randomNumber = new RandomNumber();
     private final OutputView outputView = new OutputView();
 
-    public void eachRound(List<Car> carList, int roundNum){
-        for (int i = 0; i < roundNum; i++) {
-            for (Car car : carList) {
-                int num = randomNumber.createRandomNumber();
-                if(num >= 4){
-                    car.move();
-                }
+    public List<Car> moveCars(Cars cars) {
+        List<Car> carList = cars.getCarList();
+        for (Car car : carList) {
+            int num = randomNumber.createRandomNumber();
+            if(num >= 4){
+                car.move();
             }
-            outputView.printEachRoundResult(carList);
         }
+        return carList;
     }
 }

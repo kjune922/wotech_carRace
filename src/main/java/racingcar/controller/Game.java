@@ -37,29 +37,12 @@ public class Game {
 
 
         outputView.printEachRoundResultRequest();
-        gameService.eachRound(cars.getCarList(), roundNum);
 
-        outputView.printWinner(calculateWinner(cars.getCarList()));
-    }
-
-    public String calculateWinner(List<Car> carList){
-        int maxPosition = findMaxPosition(carList);
-
-        List<String> winners = new ArrayList<>();
-        for (Car car : carList) {
-            if(car.getPosition() == maxPosition){
-                winners.add(car.getName());
-            }
+        for (int i = 0; i < roundNum; i++) {
+            outputView.printEachRoundResult(gameService.moveCars(cars));
         }
-        return String.join(", ",winners);
+
+        outputView.printWinner(cars.calculateWinner(cars.getCarList()));
     }
 
-    private int findMaxPosition(List<Car> carList) {
-        int maxPosition = 0;
-
-        for (Car car : carList) {
-            maxPosition = Math.max(car.getPosition(), maxPosition);
-        }
-        return maxPosition;
-    }
 }
