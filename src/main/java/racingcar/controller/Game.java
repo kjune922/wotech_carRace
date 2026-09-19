@@ -42,7 +42,7 @@ public class Game {
             outputView.printEachRoundResult(gameService.moveCars(cars));
         }
 
-        outputView.printWinner(cars.calculateWinner(cars.getCarList()));
+        outputView.printWinner(cars.calculateWinner());
     }
 
 }

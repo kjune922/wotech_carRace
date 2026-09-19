@@ -14,8 +14,8 @@ public class Cars {
     public List<Car> getCarList() {
         return carList;
     }
-    public String calculateWinner(List<Car> carList){
-        int maxPosition = findMaxPosition(carList);
+    public String calculateWinner(){
+        int maxPosition = findMaxPosition();
 
         List<String> winners = new ArrayList<>();
         for (Car car : carList) {
@@ -25,7 +25,7 @@ public class Cars {
         }
         return String.join(", ",winners);
     }
-    private int findMaxPosition(List<Car> carList) {
+    private int findMaxPosition() {
         int maxPosition = 0;
 
         for (Car car : carList) {
